@@ -6,7 +6,6 @@ app = Flask(__name__)
 
 
 class Config(object):
-
     DEBUG = True
 # 加载app的配置
 app.config.from_object(Config)
