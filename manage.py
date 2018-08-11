@@ -12,7 +12,7 @@ class Config(object):
 
     # 配置mysql：指定数据库位置
     SQLALCHEMY_DATABASE_URI = 'mysql://root:mysql@mysql@127.0.0.1：3306/information_new'
-    # 禁用追踪mysql 因为mysql性能差，如果再去追踪mysql的所有修改，会再次浪费性能
+    # 禁用追踪mysql 因为mysql性能差，如果再去追踪mysql的所有修改 会再次浪费性能
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
