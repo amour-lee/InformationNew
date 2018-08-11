@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-
+from flask_wtf import CSRFProtect
 
 # 创建app实例 __name__决定了如何查找静态文件
 app = Flask(__name__)
@@ -22,6 +22,8 @@ app.config.from_object(Config)
 # 配置mysql
 db = SQLAlchemy(app)
 
+# 开启CSRF保护
+CSRFProtect(app)
 
 @app.route('/')
 def index():
