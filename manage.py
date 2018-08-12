@@ -1,4 +1,5 @@
 from flask import Flask, session
+from flask_script import Manager
 from flask_sqlalchemy import SQLAlchemy
 from redis import StrictRedis
 from flask_wtf import CSRFProtect
@@ -48,6 +49,8 @@ CSRFProtect(app)
 # 配置Session：将flask中的session的数据引导到redis
 Session(app)
 
+# 创建脚本管理器
+manager = Manager(app)
 @app.route('/', methods = ['GET','POST'])
 def index():
 
@@ -64,4 +67,6 @@ def index():
 if __name__ == '__main__':
 
     print(app.url_map)
-    app.run()
+    # app.run()
+
+    manager.run()
