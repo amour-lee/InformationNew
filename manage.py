@@ -1,9 +1,11 @@
 from flask import Flask, session
+from flask_migrate import Migrate,MigrateCommand
 from flask_script import Manager
 from flask_sqlalchemy import SQLAlchemy
 from redis import StrictRedis
 from flask_wtf import CSRFProtect
 from flask_session import Session # Session 和flask里的session不一样
+
 
 # 创建app实例 __name__决定了如何查找静态文件
 app = Flask(__name__)
@@ -51,6 +53,13 @@ Session(app)
 
 # 创建脚本管理器
 manager = Manager(app)
+
+# 迁移时让app和db建立关联
+Migrate(app,db)
+# 把迁移脚本命令添加到脚本管理器对象
+# 'db' 是别名, MigrateCommand 是迁移命令
+manager.add_command('db', MigrateCommand)
+
 @app.route('/', methods = ['GET','POST'])
 def index():
 
