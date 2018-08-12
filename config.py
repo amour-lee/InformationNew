@@ -25,3 +25,16 @@ class Config(object):
     SESSION_USE_SIGNER = True
     # 设置session有效期: 这里指的是session的扩展操作session时设置的有效期 以秒为单位
     PERMANENT_SESSION_LIFETIME = 60 * 60 * 24
+
+
+class DevelopmentConfig(Config):
+    """开发环境配置类
+    如果开发环境的配置和父类一样，可以直接pass
+    """
+    pass
+
+class ProductionConfig(Config):
+    """生产环境的配置类
+    实际开发中，需要额外配置生产环境下的数据库和其他信息
+    """
+    pass
