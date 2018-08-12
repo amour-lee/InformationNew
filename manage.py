@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_wtf import CSRFProtect
 from redis import StrictRedis
+from flask_wtf import CSRFProtect
 
 
 # 创建app实例 __name__决定了如何查找静态文件
@@ -21,6 +21,9 @@ class Config(object):
     REDIS_HOST = '127.0.0.1'
     REDIS_PORT = 6379
 
+    # 配置秘钥
+    SECRET_KEY = 'agshdjfk'
+
 # 配置redis
 redis_store = StrictRedis(host = Config.REDIS_HOST,port = Config.REDIS_PORT)
 
@@ -31,9 +34,10 @@ app.config.from_object(Config)
 db = SQLAlchemy(app)
 
 # 开启CSRF保护
+# 什么情况下代表保护成功：如果用户发送POST，DELETE，PUT...时，没有携带csrf_token或者错误,服务器返回状态码400／403
 CSRFProtect(app)
 
-@app.route('/')
+@app.route('/', methods = ['GET','POST'])
 def index():
 
     # 测试redis的写入
