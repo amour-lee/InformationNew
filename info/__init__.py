@@ -6,7 +6,7 @@ from redis import StrictRedis
 from config import configs
 import logging
 from logging.handlers import RotatingFileHandler
-from info.modlues.index import index_blue
+
 
 # 创建一个空的db对象
 db = SQLAlchemy()
@@ -53,6 +53,8 @@ def create_app(config_name):
     # 配置Session：将flask中的session的数据引导到redis
     Session(app)
 
+    # 注册蓝图:哪里注册蓝图，就在哪里导，避免蓝图导入过早
+    from info.modlues.index import index_blue
     app.register_blueprint(index_blue)
 
     # 读取指定配置的app
