@@ -24,6 +24,11 @@ def index():
     # session['user_id'] = 1
     # session['user_name'] = 'xiaohua'
 
+    import logging
+    logging.debug('测试debug')
+    logging.error('测试error')
+    logging.warning('测试warning')
+    logging.fatal('测试fatal')
     return 'index'
 
 # 程序启动入口
