@@ -1,6 +1,6 @@
 from flask_migrate import Migrate,MigrateCommand
 from flask_script import Manager
-from info import create_app
+from info import create_app,db
 
 #调用工厂方法，创建app
 app = create_app('dev')

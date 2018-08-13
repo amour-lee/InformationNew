@@ -6,6 +6,9 @@ from redis import StrictRedis
 from config import configs
 
 
+# 创建一个空的db对象
+db = SQLAlchemy()
+
 def create_app(config_name):
     """创建app的工厂方法"""
 
@@ -22,8 +25,9 @@ def create_app(config_name):
     redis_store = StrictRedis(host = config_class.REDIS_HOST,port = config_class.REDIS_PORT)
 
 
-    # 配置mysql
-    db = SQLAlchemy(app)
+    # # 配置mysql
+    # db = SQLAlchemy(app)
+    db.init_app(app)
 
     # 开启CSRF保护
     # 什么情况下代表保护成功：如果用户发送POST，DELETE，PUT...时，没有携带csrf_token或者错误,服务器返回状态码400／403
