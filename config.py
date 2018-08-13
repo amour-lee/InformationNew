@@ -3,7 +3,7 @@ from redis import StrictRedis
 
 class Config(object):
 
-    DEBUG = True
+    # DEBUG = True
 
     # 配置mysql：指定数据库位置
     SQLALCHEMY_DATABASE_URI = 'mysql://root:mysql@mysql@127.0.0.1：3306/information_new'
@@ -31,10 +31,16 @@ class DevelopmentConfig(Config):
     """开发环境配置类
     如果开发环境的配置和父类一样，可以直接pass
     """
-    pass
+    DEBUG = True
 
 class ProductionConfig(Config):
     """生产环境的配置类
     实际开发中，需要额外配置生产环境下的数据库和其他信息
     """
-    pass
+    DEBUG = False
+
+# 工厂方法需要的原材料
+configs = {
+    'dev':DevelopmentConfig,
+    'prod':ProductionConfig
+}
