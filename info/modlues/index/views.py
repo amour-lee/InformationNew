@@ -1,6 +1,8 @@
 from . import index_blue
+from flask import render_template
 
-@index_blue.route('/index', methods = ['GET','POST'])
+
+@index_blue.route('/', methods = ['GET','POST'])
 def index():
 
     # 测试redis的写入
@@ -16,5 +18,5 @@ def index():
     # logging.warning('测试warning')
     # logging.fatal('测试fatal')
 
-    return 'index_blue'
+    return render_template('news/index.html')
 

@@ -14,6 +14,7 @@ Migrate(app,db)
 # 把迁移脚本命令添加到脚本管理器对象
 # 'db' 是别名, MigrateCommand 是迁移命令
 manager.add_command('db', MigrateCommand)
+
 # 程序启动入口
 
 if __name__ == '__main__':
