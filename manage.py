@@ -9,29 +9,12 @@ app = create_app('dev')
 manager = Manager(app)
 
 # 迁移时让app和db建立关联
-# Migrate(app,db)
-# # 把迁移脚本命令添加到脚本管理器对象
-# # 'db' 是别名, MigrateCommand 是迁移命令
-# manager.add_command('db', MigrateCommand)
-
-@app.route('/', methods = ['GET','POST'])
-def index():
-
-    # 测试redis的写入
-    # redis_store.set('name','xiaohua')
-
-    # 回顾session缓存保持的数据
-    # session['user_id'] = 1
-    # session['user_name'] = 'xiaohua'
-
-    import logging
-    logging.debug('测试debug')
-    logging.error('测试error')
-    logging.warning('测试warning')
-    logging.fatal('测试fatal')
-    return 'index'
-
+Migrate(app,db)
+# 把迁移脚本命令添加到脚本管理器对象
+# 'db' 是别名, MigrateCommand 是迁移命令
+manager.add_command('db', MigrateCommand)
 # 程序启动入口
+
 if __name__ == '__main__':
 
     print(app.url_map)
